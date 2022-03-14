@@ -1,3 +1,4 @@
+import 'package:docuzer/localization/generated/S.dart';
 import 'package:docuzer/screens/templates/widgets/template_item.dart';
 import 'package:docuzer/ui/themes.dart';
 import 'package:docuzer/widgets/app_bar/custom_app_bar.dart';
@@ -16,7 +17,7 @@ class _SelectTemplateScreenState extends State<SelectTemplateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-
+        title: Text(S.of(context)!.selectTemplate),
       ),
       body: GridView.count(
         children: [

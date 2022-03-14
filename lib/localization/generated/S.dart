@@ -112,11 +112,41 @@ abstract class S {
   /// **'OK'**
   String get ok;
 
+  /// No description provided for @notGreaterThan.
+  ///
+  /// In en, this message translates to:
+  /// **'Not greater than {value}'**
+  String notGreaterThan(int value);
+
+  /// No description provided for @notLessThan.
+  ///
+  /// In en, this message translates to:
+  /// **'Not less than {value}'**
+  String notLessThan(int value);
+
+  /// No description provided for @addField.
+  ///
+  /// In en, this message translates to:
+  /// **'Add field'**
+  String get addField;
+
+  /// No description provided for @incorrectFieldFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect field format'**
+  String get incorrectFieldFormat;
+
   /// No description provided for @incorrectEmail.
   ///
   /// In en, this message translates to:
   /// **'Incorrect E-mail is specified'**
   String get incorrectEmail;
+
+  /// No description provided for @passwordShouldContain.
+  ///
+  /// In en, this message translates to:
+  /// **'Must contain Latin letters of different case, as well as numbers'**
+  String get passwordShouldContain;
 
   /// No description provided for @fromToSymbols.
   ///
@@ -124,11 +154,17 @@ abstract class S {
   /// **'From {from} to {to} symbols'**
   String fromToSymbols(int from, int to);
 
-  /// No description provided for @passwordShouldContain.
+  /// No description provided for @fromSymbols.
   ///
   /// In en, this message translates to:
-  /// **'Must contain Latin letters of different case, as well as numbers'**
-  String get passwordShouldContain;
+  /// **'From {from} symbols'**
+  String fromSymbols(int from);
+
+  /// No description provided for @toSymbols.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to {to} symbols'**
+  String toSymbols(int to);
 
   /// No description provided for @loginUsernameEmail.
   ///
@@ -399,6 +435,78 @@ abstract class S {
   /// In en, this message translates to:
   /// **'No templates'**
   String get noTemplates;
+
+  /// No description provided for @editing.
+  ///
+  /// In en, this message translates to:
+  /// **'Editing'**
+  String get editing;
+
+  /// No description provided for @creating.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating'**
+  String get creating;
+
+  /// No description provided for @selectTemplate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a template'**
+  String get selectTemplate;
+
+  /// No description provided for @documentName.
+  ///
+  /// In en, this message translates to:
+  /// **'Document name'**
+  String get documentName;
+
+  /// No description provided for @fromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'From gallery'**
+  String get fromGallery;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get takePhoto;
+
+  /// No description provided for @unableToAccessGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to access the gallery. Check the app settings'**
+  String get unableToAccessGallery;
+
+  /// No description provided for @unableToAccessCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to access the camera. Check the app settings'**
+  String get unableToAccessCamera;
+
+  /// No description provided for @images.
+  ///
+  /// In en, this message translates to:
+  /// **'Images'**
+  String get images;
+
+  /// No description provided for @unableToAddMoreImages.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to add more than five images'**
+  String get unableToAddMoreImages;
+
+  /// No description provided for @viewing.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewing'**
+  String get viewing;
+
+  /// No description provided for @savingError.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving error'**
+  String get savingError;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

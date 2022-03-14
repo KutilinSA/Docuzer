@@ -164,7 +164,12 @@ class Themes {
       isDense: true,
       contentPadding: const EdgeInsets.symmetric(vertical: 8),
       hintStyle: _defaultTextStyle.copyWith(fontSize: 15, color: _colorDarkBlue.withOpacity(0.5)),
-      labelStyle: _defaultTextStyle.copyWith(fontSize: 15, color: _colorDarkBlue.withOpacity(0.5)),
+      labelStyle: const TextStyle(
+        fontStyle: FontStyle.normal,
+        color: Color.fromRGBO(20, 55, 95, 0.5),
+        fontWeight: FontWeight.w400,
+        fontSize: 20,
+      ),
       errorStyle: const TextStyle(fontSize: 15, color: _colorError),
       errorBorder: const UnderlineInputBorder(borderSide: BorderSide(color: _colorError)),
       enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: _colorDarkBlue)),

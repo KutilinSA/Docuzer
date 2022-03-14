@@ -17,7 +17,26 @@ class SRu extends S {
   String get ok => 'OK';
 
   @override
+  String notGreaterThan(int value) {
+    return 'Не больше, чем $value';
+  }
+
+  @override
+  String notLessThan(int value) {
+    return 'Не меньше, чем $value';
+  }
+
+  @override
+  String get addField => 'Добавить поле';
+
+  @override
+  String get incorrectFieldFormat => 'Неверный формат поля';
+
+  @override
   String get incorrectEmail => 'Указан некорректный E-mail';
+
+  @override
+  String get passwordShouldContain => 'Должен содержать латинские буквы разного регистра, а также цифры';
 
   @override
   String fromToSymbols(int from, int to) {
@@ -25,7 +44,14 @@ class SRu extends S {
   }
 
   @override
-  String get passwordShouldContain => 'Должен содержать латинские буквы разного регистра, а также цифры';
+  String fromSymbols(int from) {
+    return 'От $from символов';
+  }
+
+  @override
+  String toSymbols(int to) {
+    return 'До $to символов';
+  }
 
   @override
   String get loginUsernameEmail => 'E-mail / имя пользователя';
@@ -165,4 +191,40 @@ class SRu extends S {
 
   @override
   String get noTemplates => 'Нет шаблонов';
+
+  @override
+  String get editing => 'Редактирование';
+
+  @override
+  String get creating => 'Создание';
+
+  @override
+  String get selectTemplate => 'Выберите шаблон';
+
+  @override
+  String get documentName => 'Название документа';
+
+  @override
+  String get fromGallery => 'Из галереи';
+
+  @override
+  String get takePhoto => 'Сфотографировать';
+
+  @override
+  String get unableToAccessGallery => 'Не удалось получить доступ к галерее. Проверьте настройки приложения';
+
+  @override
+  String get unableToAccessCamera => 'Не удалось получить доступ к камере. Проверьте настройки приложения';
+
+  @override
+  String get images => 'Изображения';
+
+  @override
+  String get unableToAddMoreImages => 'Невозможно добавить более пяти изображений';
+
+  @override
+  String get viewing => 'Просмотр';
+
+  @override
+  String get savingError => 'Ошибка сохранения';
 }

@@ -18,6 +18,7 @@ class TemplateModel extends Equatable {
   DynamicMap toJson() => <String, dynamic> {
     'title': title,
     'emoji': emoji,
+    'fieldModels': fieldModels,
   };
 
   static String _getEmoji(Object? value) {

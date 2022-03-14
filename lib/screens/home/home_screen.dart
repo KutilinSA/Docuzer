@@ -45,13 +45,14 @@ class _HomeScreenState extends State<HomeScreen> {
     final localization = S.of(context)!;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
         title: Text(localization.documents),
         actions: [
           IconButton(
             padding: const EdgeInsets.fromLTRB(8, 8, 24, 8),
             icon: const Icon(CustomIcons.add, size: 20),
-            onPressed: _addDocument,
+            onPressed: _createDocument,
           ),
         ],
       ),
@@ -83,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.secondary),
                     side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: Colors.transparent)),
                   ),
-                  onPressed: _addDocument,
+                  onPressed: _createDocument,
                   child: Text(localization.addFirstDocument),
                 ),
               ),
@@ -101,23 +102,26 @@ class _HomeScreenState extends State<HomeScreen> {
             documentsProvider.insert(model, orderUpdateEntity.newIndex);
           }
         },
+        dragChildBoxDecoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(color: Color(0x2914375F), offset: Offset(2, 4), blurRadius: 9, spreadRadius: 3),
+          ],
+        ),
         builder: (children, scrollController) {
-          return GridView(
+          return GridView.count(
             controller: scrollController,
             children: children,
             padding: Themes.listPadding,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisSpacing: 4,
-              crossAxisSpacing: 8,
-            ),
+            crossAxisCount: 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
           );
         },
       ),
     );
   }
 
-  void _addDocument() {
+  void _createDocument() {
     final localization = S.of(context)!;
 
     Dialogs.showChoicesDialog(
@@ -133,13 +137,14 @@ class _HomeScreenState extends State<HomeScreen> {
       if (value == 0) {
         Navigator.of(context).push<TemplateModel?>(MaterialPageRoute(
           builder: (_) => const SelectTemplateScreen(),
+          fullscreenDialog: true,
         )).then((value) {
           if (value != null) {
-            Navigator.of(context).pushNamed<void>('home/add-document', arguments: value);
+            Navigator.of(context).pushNamed<void>('home/create-document', arguments: value);
           }
         });
       } else if (value == 1) {
-        Navigator.of(context).pushNamed<void>('home/add-document');
+        Navigator.of(context).pushNamed<void>('home/create-document');
       }
     });
   }

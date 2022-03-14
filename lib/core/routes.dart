@@ -27,7 +27,7 @@ class Routes {
 
   static final Map<String, Widget Function(Object?)> _routes = {
     'home': (_) => const HomeScreen(),
-    'home/add-document': (template) => DocumentEditorScreen(template: template as TemplateModel?),
+    'home/create-document': (template) => DocumentEditorScreen(template: template as TemplateModel?),
     'home/edit-document': (initialData) => DocumentEditorScreen(initialData: initialData as DocumentModel?),
     'templates': (_) => const TemplatesScreen(),
   };

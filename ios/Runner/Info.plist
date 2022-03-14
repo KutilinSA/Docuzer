@@ -50,5 +50,9 @@
 		<false/>
 		<key>UIStatusBarStyle</key>
 		<string>UIStatusBarStyleDarkContent</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Photo library permission is needed to add images to documents</string>
+		<key>NSCameraUsageDescription</key>
+		<string>Camera permission is needed to add images to documents</string>
 	</dict>
 </plist>

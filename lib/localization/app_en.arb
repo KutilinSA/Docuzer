@@ -4,9 +4,28 @@
   "no": "No",
   "ok": "OK",
 
+  "notGreaterThan": "Not greater than {value}",
+  "@notGreaterThan": {
+    "placeholders": {
+      "value":{
+        "type": "int"
+      }
+    }
+  },
+  "notLessThan": "Not less than {value}",
+  "@notLessThan": {
+    "placeholders": {
+      "value":{
+        "type": "int"
+      }
+    }
+  },
+
+  "addField": "Add field",
+  "incorrectFieldFormat": "Incorrect field format",
   "incorrectEmail": "Incorrect E-mail is specified",
-  "fromToSymbols": "From {from} to {to} symbols",
   "passwordShouldContain": "Must contain Latin letters of different case, as well as numbers",
+  "fromToSymbols": "From {from} to {to} symbols",
   "@fromToSymbols": {
     "placeholders": {
       "from": {
@@ -17,6 +36,23 @@
       }
     }
   },
+  "fromSymbols": "From {from} symbols",
+  "@fromSymbols": {
+    "placeholders": {
+      "from": {
+        "type": "int"
+      }
+    }
+  },
+  "toSymbols": "Up to {to} symbols",
+  "@toSymbols": {
+    "placeholders": {
+      "to": {
+        "type": "int"
+      }
+    }
+  },
+
   "loginUsernameEmail": "E-mail / username",
   "password": "Password",
   "signIn": "Sign in",
@@ -75,5 +111,17 @@
   "documentsEmpty": "Oh, it's completely empty here :(",
   "templates": "Templates",
   "documents": "Documents",
-  "noTemplates": "No templates"
+  "noTemplates": "No templates",
+  "editing": "Editing",
+  "creating": "Creating",
+  "selectTemplate": "Select a template",
+  "documentName": "Document name",
+  "fromGallery": "From gallery",
+  "takePhoto": "Take a photo",
+  "unableToAccessGallery": "Unable to access the gallery. Check the app settings",
+  "unableToAccessCamera": "Unable to access the camera. Check the app settings",
+  "images": "Images",
+  "unableToAddMoreImages": "Unable to add more than five images",
+  "viewing": "Viewing",
+  "savingError": "Saving error"
 }

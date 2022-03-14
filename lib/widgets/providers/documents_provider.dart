@@ -46,7 +46,7 @@ class _DocumentsProviderState extends State<DocumentsProvider> {
     iOptions: IOSOptions(accessibility: IOSAccessibility.first_unlock),
   );
 
-  final List<DocumentModel> _documents = [];
+  List<DocumentModel> _documents = [];
 
   @override
   Widget build(BuildContext context) {
@@ -60,17 +60,30 @@ class _DocumentsProviderState extends State<DocumentsProvider> {
   List<DocumentModel> getDocuments() => [..._documents];
 
   void add(DocumentModel value) {
-    setState(() => _documents.add(value));
+    setState(() => _documents = [value, ..._documents]);
+    unawaited(_updateStorage());
+  }
+
+  void update(DocumentModel value, DocumentModel oldValue) {
+    final index = _documents.indexOf(oldValue);
+    if (index == -1) {
+      return;
+    }
+    final newDocuments = [..._documents];
+    newDocuments[index] = value;
+    setState(() => _documents = newDocuments);
     unawaited(_updateStorage());
   }
 
   void insert(DocumentModel value, int index) {
-    setState(() => _documents.insert(index, value));
+    setState(() => _documents = [..._documents]..insert(index, value));
     unawaited(_updateStorage());
   }
 
   DocumentModel remove(int index) {
-    final model = _documents.removeAt(index);
+    final newDocuments = [..._documents];
+    final model = newDocuments.removeAt(index);
+    setState(() => _documents = newDocuments);
     unawaited(_updateStorage());
     return model;
   }
@@ -82,12 +95,12 @@ class _DocumentsProviderState extends State<DocumentsProvider> {
   Future<void> _load() async {
     final value = await _storage.read(key: 'documents');
     if (value == null) {
-      setState(_documents.clear);
+      setState(() => _documents = []);
       return;
     }
 
     try {
-      _documents.clear();
+      _documents = [];
       final decoded = jsonDecode(value) as List<dynamic>;
       for (final documentJson in decoded) {
         final model = DocumentModel.fromJson(documentJson as DynamicMap);
@@ -96,7 +109,7 @@ class _DocumentsProviderState extends State<DocumentsProvider> {
       setState(() {});
     } on Exception catch (_) {
       await _storage.delete(key: 'documents');
-      setState(_documents.clear);
+      setState(() => _documents = []);
     }
   }
 }

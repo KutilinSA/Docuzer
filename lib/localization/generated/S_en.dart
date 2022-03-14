@@ -17,7 +17,26 @@ class SEn extends S {
   String get ok => 'OK';
 
   @override
+  String notGreaterThan(int value) {
+    return 'Not greater than $value';
+  }
+
+  @override
+  String notLessThan(int value) {
+    return 'Not less than $value';
+  }
+
+  @override
+  String get addField => 'Add field';
+
+  @override
+  String get incorrectFieldFormat => 'Incorrect field format';
+
+  @override
   String get incorrectEmail => 'Incorrect E-mail is specified';
+
+  @override
+  String get passwordShouldContain => 'Must contain Latin letters of different case, as well as numbers';
 
   @override
   String fromToSymbols(int from, int to) {
@@ -25,7 +44,14 @@ class SEn extends S {
   }
 
   @override
-  String get passwordShouldContain => 'Must contain Latin letters of different case, as well as numbers';
+  String fromSymbols(int from) {
+    return 'From $from symbols';
+  }
+
+  @override
+  String toSymbols(int to) {
+    return 'Up to $to symbols';
+  }
 
   @override
   String get loginUsernameEmail => 'E-mail / username';
@@ -165,4 +191,40 @@ class SEn extends S {
 
   @override
   String get noTemplates => 'No templates';
+
+  @override
+  String get editing => 'Editing';
+
+  @override
+  String get creating => 'Creating';
+
+  @override
+  String get selectTemplate => 'Select a template';
+
+  @override
+  String get documentName => 'Document name';
+
+  @override
+  String get fromGallery => 'From gallery';
+
+  @override
+  String get takePhoto => 'Take a photo';
+
+  @override
+  String get unableToAccessGallery => 'Unable to access the gallery. Check the app settings';
+
+  @override
+  String get unableToAccessCamera => 'Unable to access the camera. Check the app settings';
+
+  @override
+  String get images => 'Images';
+
+  @override
+  String get unableToAddMoreImages => 'Unable to add more than five images';
+
+  @override
+  String get viewing => 'Viewing';
+
+  @override
+  String get savingError => 'Saving error';
 }

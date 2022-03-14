@@ -11,7 +11,7 @@ abstract class FieldModel extends Equatable {
   factory FieldModel(DynamicMap json) {
     final type = json['type'] as String?;
     if (type == 'int') {
-      return IntegerField.fromJson(json);
+      return IntegerFieldModel.fromJson(json);
     }
     throw UnimplementedError('Field type $type is not implemented');
   }
@@ -23,25 +23,28 @@ abstract class FieldModel extends Equatable {
   DynamicMap toJson() => <String, dynamic> {
     'hint': hint,
     'type': type,
+    'value': getValue(),
   };
+
+  dynamic getValue();
 }
 
-class IntegerField extends FieldModel {
+class IntegerFieldModel extends FieldModel {
   final int? minValue;
   final int? maxValue;
   final int? minLength;
   final int? maxLength;
-  final int? fixedLength;
+  final int? value;
 
   @override
-  List<Object?> get props => [...super.props, minValue, maxValue, minLength, maxLength, fixedLength];
+  List<Object?> get props => [...super.props, value, minValue, maxValue, minLength, maxLength];
 
-  IntegerField.fromJson(DynamicMap json):
+  IntegerFieldModel.fromJson(DynamicMap json):
       minValue = json['minValue'] as int?,
       maxValue = json['maxValue'] as int?,
       minLength = json['minLength'] as int?,
       maxLength = json['maxLength'] as int?,
-      fixedLength = json['fixedLength'] as int?,
+      value = json['value'] as int?,
       super._fromJson(json);
 
   @override
@@ -50,7 +53,9 @@ class IntegerField extends FieldModel {
     'maxValue': maxValue,
     'minLength': minLength,
     'maxLength': maxLength,
-    'fixedLength': fixedLength,
     ...super.toJson(),
   };
+
+  @override
+  dynamic getValue() => value;
 }

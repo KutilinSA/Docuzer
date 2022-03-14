@@ -4,8 +4,14 @@
   "no": "Нет",
   "ok": "OK",
 
+  "addField": "Добавить поле",
+  "incorrectFieldFormat": "Неверный формат поля",
+  "notGreaterThan": "Не больше, чем {value}",
+  "notLessThan": "Не меньше, чем {value}",
   "incorrectEmail": "Указан некорректный E-mail",
   "fromToSymbols": "От {from} до {to} символов",
+  "fromSymbols": "От {from} символов",
+  "toSymbols": "До {to} символов",
   "passwordShouldContain": "Должен содержать латинские буквы разного регистра, а также цифры",
   "loginUsernameEmail": "E-mail / имя пользователя",
   "password": "Пароль",
@@ -52,5 +58,17 @@
   "documentsEmpty": "Ох, здесь совсем пусто :(",
   "templates": "Шаблоны",
   "documents": "Документы",
-  "noTemplates": "Нет шаблонов"
+  "noTemplates": "Нет шаблонов",
+  "editing": "Редактирование",
+  "creating": "Создание",
+  "selectTemplate": "Выберите шаблон",
+  "documentName": "Название документа",
+  "fromGallery": "Из галереи",
+  "takePhoto": "Сфотографировать",
+  "unableToAccessGallery": "Не удалось получить доступ к галерее. Проверьте настройки приложения",
+  "unableToAccessCamera": "Не удалось получить доступ к камере. Проверьте настройки приложения",
+  "images": "Изображения",
+  "unableToAddMoreImages": "Невозможно добавить более пяти изображений",
+  "viewing": "Просмотр",
+  "savingError": "Ошибка сохранения"
 }

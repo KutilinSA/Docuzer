@@ -22,6 +22,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
     final localization = S.of(context)!;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
         title: Text(localization.templates),
         actions: [
@@ -57,6 +58,11 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
             templatesProvider.insert(model, orderUpdateEntity.newIndex);
           }
         },
+        dragChildBoxDecoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(color: Color(0x2914375F), offset: Offset(2, 4), blurRadius: 9, spreadRadius: 3),
+          ],
+        ),
         builder: (children, scrollController) {
           return GridView.count(
             controller: scrollController,
@@ -64,6 +70,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
             padding: Themes.listPadding,
             crossAxisCount: 2,
             crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
           );
         },
       ),

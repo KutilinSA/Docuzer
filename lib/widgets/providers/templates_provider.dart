@@ -47,7 +47,7 @@ class _TemplatesProviderState extends State<TemplatesProvider> {
     iOptions: IOSOptions(accessibility: IOSAccessibility.first_unlock),
   );
 
-  final List<TemplateModel> _templates = [];
+  List<TemplateModel> _templates = [];
 
   @override
   Widget build(BuildContext context) {
@@ -61,17 +61,19 @@ class _TemplatesProviderState extends State<TemplatesProvider> {
   List<TemplateModel> getTemplates() => [..._templates];
 
   void add(TemplateModel value) {
-    setState(() => _templates.add(value));
+    setState(() => [..._templates].insert(0, value));
     unawaited(_updateStorage());
   }
 
   void insert(TemplateModel value, int index) {
-    setState(() => _templates.insert(index, value));
+    setState(() => [..._templates].insert(index, value));
     unawaited(_updateStorage());
   }
 
   TemplateModel remove(int index) {
-    final model = _templates.removeAt(index);
+    final newTemplates = [..._templates];
+    final model = newTemplates.removeAt(index);
+    setState(() => _templates = newTemplates);
     unawaited(_updateStorage());
     return model;
   }
@@ -83,15 +85,13 @@ class _TemplatesProviderState extends State<TemplatesProvider> {
   Future<void> _load() async {
     final value = await _storage.read(key: 'templates');
     if (value == null) {
-      setState(() {
-        _templates..clear()..addAll(Templates.initialTemplates());
-      });
+      setState(() => _templates = [...Templates.initialTemplates()]);
       unawaited(_updateStorage());
       return;
     }
 
     try {
-      _templates.clear();
+      _templates = [];
       final decoded = jsonDecode(value) as List<dynamic>;
       for (final templateJson in decoded) {
         final model = TemplateModel.fromJson(templateJson as DynamicMap);
@@ -100,7 +100,7 @@ class _TemplatesProviderState extends State<TemplatesProvider> {
       setState(() {});
     } on Exception catch (_) {
       await _storage.delete(key: 'templates');
-      setState(_templates.clear);
+      setState(() => _templates = []);
     }
   }
 }
