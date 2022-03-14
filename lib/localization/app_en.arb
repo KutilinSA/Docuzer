@@ -1,0 +1,79 @@
+{
+  "@@locale": "en",
+  "yes": "Yes",
+  "no": "No",
+  "ok": "OK",
+
+  "incorrectEmail": "Incorrect E-mail is specified",
+  "fromToSymbols": "From {from} to {to} symbols",
+  "passwordShouldContain": "Must contain Latin letters of different case, as well as numbers",
+  "@fromToSymbols": {
+    "placeholders": {
+      "from": {
+        "type": "int"
+      },
+      "to": {
+        "type": "int"
+      }
+    }
+  },
+  "loginUsernameEmail": "E-mail / username",
+  "password": "Password",
+  "signIn": "Sign in",
+  "signInTitle": "Signing in",
+  "forgotPassword": "Forgot password?",
+  "signUp": "Sign up",
+  "signUpTitle": "Registration",
+  "fieldCantBeEmpty": "The field can't be empty",
+  "fieldMaxLength": "The maximum field length is {value}",
+  "@fieldMaxLength": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "somethingWentWrong": "Something went wrong",
+  "incorrectCredentials": "Incorrect credentials",
+  "connectionError": "Connection error",
+  "emailAlreadyUsed": "E-mail is already used",
+  "usernameAlreadyUsed": "Username is already used",
+  "incorrectEmailScheme": "Incorrect E-mail format",
+  "incorrectUsernameScheme": "Incorrect username format",
+  "dataFilledIncorrectly": "The data is filled incorrectly",
+  "repeatPassword": "Repeat the password",
+  "verificationCode": "Verification code",
+  "insertCode": "Insert code",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "passwordsDontMatch": "Passwords don't match",
+  "passwordRecovery": "Password recovery",
+  "tryAgain": "Try again",
+  "next": "Next",
+  "noMoreAttempts": "The attempts ended\nRequest a new code",
+  "codeSentAgain": "The code was sent again",
+  "failedToSendCode": "Failed to send the code",
+  "attemptsLeft": "Incorrect code\nAttempts left: {count}",
+  "@attemptsLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "userNotFound": "User not found",
+  "resend": "Resend",
+  "passwordUpdated": "Password updated",
+  "newPassword": "New password",
+  "email": "E-mail",
+  "username": "Username",
+  "accountDisabled": "Your account is disabled. Contact support",
+  "notEnoughRights": "Not enough rights",
+  "fromTemplate": "By template",
+  "fromNothing": "Empty document",
+  "addFirstDocument": "Add the first document!",
+  "documentsEmpty": "Oh, it's completely empty here :(",
+  "templates": "Templates",
+  "documents": "Documents",
+  "noTemplates": "No templates"
+}

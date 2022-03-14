@@ -1,0 +1,7 @@
+arb-dir: lib/localization
+template-arb-file: app_en.arb
+synthetic-package: false
+output-dir: lib/localization/generated
+output-localization-file: S.dart
+output-class: S
+header: "// ignore_for_file: always_use_package_imports"
