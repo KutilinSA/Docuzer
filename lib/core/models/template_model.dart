@@ -13,7 +13,7 @@ class TemplateModel extends Equatable {
   TemplateModel.fromJson(DynamicMap json) :
         title = json['title'] as String,
         emoji = _getEmoji(json['emoji']),
-        fieldModels = (json['fieldModels'] as List<Object?>?)?.map((e) => FieldModel(e as DynamicMap)).toList() ?? [];
+        fieldModels = (json['fieldModels'] as List<Object?>?)?.map((e) => FieldModel.fromJson(e as DynamicMap)).toList() ?? [];
 
   DynamicMap toJson() => <String, dynamic> {
     'title': title,

@@ -41,7 +41,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
   ] : [];
   late final List<FieldModel> _filedModels = widget.initialData != null ? [
     for (final fieldModel in widget.initialData!.fieldModels)
-      FieldModel(fieldModel.toJson()),
+      FieldModel.fromJson(fieldModel.toJson()),
   ] : [];
 
   int _currentCarouselStep = 0;
@@ -195,15 +195,27 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
   }
 
   void _addField() {
-    Dialogs.showChoicesDialog(context, items: [
-      'Целочисленное',
-    ]).then((value) {
-      if (value == 0) {
-        setState(() {
-          _filedModels.add(FieldModel(const <String, dynamic> {
-            'title': 'Поле',
-            'type': 'int',
-          }));
+    Dialogs.showFieldLabelDialog(context).then((label) {
+      if (label != null) {
+        Dialogs.showChoicesDialog(context, items: [
+          'Целочисленное',
+          'Строковое',
+        ]).then((value) {
+          if (value == 0) {
+            setState(() {
+              _filedModels.add(FieldModel.fromJson(<String, dynamic> {
+                'label': label,
+                'type': 'int',
+              }));
+            });
+          } else if (value == 1) {
+            setState(() {
+              _filedModels.add(FieldModel.fromJson(<String, dynamic> {
+                'label': label,
+                'type': 'string',
+              }));
+            });
+          }
         });
       }
     });
@@ -280,7 +292,6 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     FocusManager.instance.primaryFocus?.unfocus();
     if (!_inputsKey.currentState!.validate()) return;
     _inputsKey.currentState!.save();
-
     Navigator.of(context).push<List<String>?>(MaterialPageRoute(
       builder: (_) => SaveDocumentImagesScreen(images: _images, previousPaths: widget.initialData?.images),
     )).then((value) {

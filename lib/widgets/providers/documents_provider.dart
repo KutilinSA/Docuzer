@@ -93,6 +93,7 @@ class _DocumentsProviderState extends State<DocumentsProvider> {
   }
 
   Future<void> _load() async {
+    await _storage.delete(key: 'documents');
     final value = await _storage.read(key: 'documents');
     if (value == null) {
       setState(() => _documents = []);

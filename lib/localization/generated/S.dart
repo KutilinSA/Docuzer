@@ -124,6 +124,12 @@ abstract class S {
   /// **'Not less than {value}'**
   String notLessThan(int value);
 
+  /// No description provided for @fieldName.
+  ///
+  /// In en, this message translates to:
+  /// **'Field name'**
+  String get fieldName;
+
   /// No description provided for @addField.
   ///
   /// In en, this message translates to:

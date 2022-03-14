@@ -21,6 +21,7 @@
     }
   },
 
+  "fieldName": "Field name",
   "addField": "Add field",
   "incorrectFieldFormat": "Incorrect field format",
   "incorrectEmail": "Incorrect E-mail is specified",

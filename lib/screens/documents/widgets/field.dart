@@ -15,18 +15,11 @@ class Field extends StatelessWidget {
   Widget build(BuildContext context) {
     final localization = S.of(context)!;
 
-    late final FieldModel castedModel;
-    if (fieldModel.type == 'int') {
-      castedModel = fieldModel as IntegerFieldModel;
-    } else {
-      throw UnimplementedError('Field type ${fieldModel.type} is not implemented');
-    }
-
     return TextFormField(
-      initialValue: fieldModel.getValue()?.toString(),
+      initialValue: fieldModel.value?.toString(),
       textInputAction: isLast ? TextInputAction.done : TextInputAction.next,
       style: Theme.of(context).textTheme.headline3,
-      inputFormatters: castedModel is IntegerFieldModel ? [
+      inputFormatters: fieldModel.type == int ? [
         FilteringTextInputFormatter.digitsOnly,
         TextInputFormatter.withFunction((oldValue, newValue) {
           if (newValue.text.isEmpty) {
@@ -39,7 +32,6 @@ class Field extends StatelessWidget {
           return oldValue;
         }),
       ] : [],
-      maxLength: castedModel is IntegerFieldModel ? castedModel.maxLength : null,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         border: OutlineInputBorder(
@@ -62,36 +54,23 @@ class Field extends StatelessWidget {
           borderSide: BorderSide(color: Theme.of(context).errorColor, width: 1.4),
           borderRadius: BorderRadius.circular(24),
         ),
-        label: castedModel.hint != null ? Text(castedModel.hint!) : null,
+        label: Text(fieldModel.label),
       ),
       onSaved: (value) {
-        if (castedModel is IntegerFieldModel) {
-          onSaved?.call(FieldModel(castedModel.toJson()..['value'] = value == null ? null : int.parse(value)));
-          return;
+        late final Object? convertedValue;
+        if (fieldModel.type == int) {
+          convertedValue = int.tryParse(value ?? '');
+        } else if (fieldModel.type == String) {
+          convertedValue = value;
+        } else {
+          throw UnimplementedError('Field type ${fieldModel.type} is not implemented');
         }
-        throw UnimplementedError('Field ${castedModel.type} type is not implemented');
+
+        onSaved?.call(FieldModel.fromJson(fieldModel.toJson()..['value'] = convertedValue));
       },
       validator: (value) {
-        if (castedModel is IntegerFieldModel) {
-          if (value == null && castedModel.minLength != null && castedModel.minLength! > 0) {
-            return localization.fromSymbols(castedModel.minLength!);
-          }
-          if (value == null && castedModel.minValue != null) {
-            return localization.notLessThan(castedModel.minValue!);
-          }
-          if (value == null) {
-            return null;
-          }
-          if (castedModel.maxLength != null && value.length > castedModel.maxLength!) {
-            return localization.toSymbols(castedModel.maxLength!);
-          }
-          final parsedValue = int.tryParse(value);
-          if (parsedValue == null) {
-            return localization.incorrectFieldFormat;
-          }
-          if (castedModel.maxValue != null && parsedValue > castedModel.maxValue!) {
-            return localization.notGreaterThan(castedModel.maxValue!);
-          }
+        if (value == null || value.isEmpty) {
+          return localization.fieldCantBeEmpty;
         }
         return null;
       },

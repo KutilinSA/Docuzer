@@ -10,8 +10,8 @@ class Dialogs {
       barrierColor: Colors.black87,
       context: context,
       useRootNavigator: true,
-      builder: (context) => AlertDialog(
-        titleTextStyle: Theme.of(context).textTheme.headline2,
+      builder: (dialogContext) => AlertDialog(
+        titleTextStyle: Theme.of(dialogContext).textTheme.headline2,
         title: Text(text, textAlign: TextAlign.center),
         titlePadding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
         actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -21,18 +21,89 @@ class Dialogs {
             width: 120,
             child: OutlinedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).errorColor),
+                backgroundColor: MaterialStateProperty.all<Color>(Theme.of(dialogContext).errorColor),
                 side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: Colors.transparent)),
               ),
-              onPressed: () => Navigator.of(context).pop(false),
+              onPressed: () => Navigator.of(dialogContext).pop(false),
               child: Text(localization.no),
             ),
           ),
           SizedBox(
             width: 120,
             child: OutlinedButton(
-              onPressed: () => Navigator.of(context).pop(true),
+              onPressed: () => Navigator.of(dialogContext).pop(true),
               child: Text(localization.yes),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Future<String?> showFieldLabelDialog(BuildContext context) {
+    final localization = S.of(context)!;
+    String? label;
+
+    return showDialog(
+      barrierColor: Colors.black87,
+      context: context,
+      useRootNavigator: true,
+      builder: (dialogContext) => AlertDialog(
+        titleTextStyle: Theme.of(dialogContext).textTheme.headline2,
+        title: Text(localization.fieldName, textAlign: TextAlign.center),
+        titlePadding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+        actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        actionsAlignment: MainAxisAlignment.spaceBetween,
+        insetPadding: EdgeInsets.zero,
+        content: SizedBox(
+          height: 60,
+          child: TextField(
+            textInputAction: TextInputAction.next,
+            style: Theme.of(context).textTheme.headline3,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Theme.of(context).primaryColorDark),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Theme.of(context).primaryColorDark.withOpacity(0.26)),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary, width: 1.4),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Theme.of(context).errorColor),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Theme.of(context).errorColor, width: 1.4),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              label: Text(localization.fieldName),
+            ),
+            onChanged: (value) => label = value.isEmpty ? null : value,
+          ),
+        ),
+        actions: [
+          SizedBox(
+            width: 150,
+            child: OutlinedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Theme.of(dialogContext).errorColor),
+                side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: Colors.transparent)),
+              ),
+              onPressed: () => Navigator.of(dialogContext).pop(null),
+              child: Text(localization.cancel),
+            ),
+          ),
+          SizedBox(
+            width: 150,
+            child: OutlinedButton(
+              onPressed: () => Navigator.of(dialogContext).pop(label),
+              child: Text(localization.confirm),
             ),
           ),
         ],

@@ -27,6 +27,9 @@ class SEn extends S {
   }
 
   @override
+  String get fieldName => 'Field name';
+
+  @override
   String get addField => 'Add field';
 
   @override

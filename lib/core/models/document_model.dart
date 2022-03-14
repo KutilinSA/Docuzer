@@ -9,7 +9,7 @@ class DocumentModel {
   DocumentModel.fromJson(DynamicMap json) :
       title = json['title'] as String,
       images = (json['images'] as List<Object?>?)?.map((e) => e as String).toList() ?? [],
-      fieldModels = (json['fieldModels'] as List<Object?>?)?.map((e) => FieldModel(e as DynamicMap)).toList() ?? [];
+      fieldModels = (json['fieldModels'] as List<Object?>?)?.map((e) => FieldModel.fromJson(e as DynamicMap)).toList() ?? [];
 
   DynamicMap toJson() => <String, dynamic> {
     'title': title,

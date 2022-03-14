@@ -4,6 +4,7 @@
   "no": "Нет",
   "ok": "OK",
 
+  "fieldName": "Название поля",
   "addField": "Добавить поле",
   "incorrectFieldFormat": "Неверный формат поля",
   "notGreaterThan": "Не больше, чем {value}",

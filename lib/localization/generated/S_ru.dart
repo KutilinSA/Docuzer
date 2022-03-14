@@ -27,6 +27,9 @@ class SRu extends S {
   }
 
   @override
+  String get fieldName => 'Название поля';
+
+  @override
   String get addField => 'Добавить поле';
 
   @override
